@@ -5,8 +5,14 @@ import '../../../../design/tokens.dart';
 class QuickActionsPanel extends StatelessWidget {
   final VoidCallback? onCallTap;
   final VoidCallback? onScreenTap;
+  final VoidCallback? onTestCallTap;
 
-  const QuickActionsPanel({super.key, this.onCallTap, this.onScreenTap});
+  const QuickActionsPanel({
+    super.key,
+    this.onCallTap,
+    this.onScreenTap,
+    this.onTestCallTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +51,14 @@ class QuickActionsPanel extends StatelessWidget {
                   icon: Icons.screenshot_monitor_rounded,
                   label: 'Screen',
                   onTap: onScreenTap ?? () {},
+                ),
+              ),
+              const SizedBox(width: AppTokens.space3),
+              Expanded(
+                child: _QuickActionButton(
+                  icon: Icons.ring_volume_rounded,
+                  label: 'Test Call',
+                  onTap: onTestCallTap ?? () {},
                 ),
               ),
             ],

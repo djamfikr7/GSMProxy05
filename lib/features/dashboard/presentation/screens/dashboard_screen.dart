@@ -8,6 +8,9 @@ import '../../data/dashboard_providers.dart';
 import '../../../../design/tokens.dart';
 import '../../../screen/presentation/screens/screen_viewer_screen.dart';
 import '../../../dialer/presentation/screens/dialer_screen.dart';
+import '../../../dialer/presentation/screens/call_management_screen.dart';
+import '../../../dialer/presentation/screens/incoming_call_screen.dart';
+import '../../../messaging/presentation/screens/messaging_screen.dart';
 
 class DashboardScreen extends ConsumerWidget {
   const DashboardScreen({super.key});
@@ -172,8 +175,12 @@ class DashboardScreen extends ConsumerWidget {
             );
           },
         );
+      case 3:
+        return const CallManagementScreen();
+      case 4:
+        return const MessagingScreen();
       default:
-        return Center(child: Text('Tab $index - Coming in Phase ${index + 4}'));
+        return Center(child: Text('Tab $index - Coming in Phase ${index + 5}'));
     }
   }
 
@@ -188,6 +195,16 @@ class DashboardScreen extends ConsumerWidget {
               QuickActionsPanel(
                 onCallTap: () => _navigateToDialer(context),
                 onScreenTap: () => _navigateToScreen(context),
+                onTestCallTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const IncomingCallScreen(
+                        callerName: 'Jane Doe',
+                        phoneNumber: '(555) 123-4567',
+                      ),
+                    ),
+                  );
+                },
               ),
               const SizedBox(height: AppTokens.space6),
 
