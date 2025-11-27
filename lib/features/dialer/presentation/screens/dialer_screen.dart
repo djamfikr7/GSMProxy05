@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../widgets/number_display.dart';
 import '../widgets/dialer_keypad.dart';
+import 'active_call_screen.dart';
 import '../../data/dialer_providers.dart';
 import '../../../../design/tokens.dart';
 
@@ -77,11 +78,10 @@ class DialerScreen extends ConsumerWidget {
               child: _CallButton(
                 enabled: number.isNotEmpty,
                 onTap: () {
-                  // TODO: Initiate call
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text('Calling $number...'),
-                      behavior: SnackBarBehavior.floating,
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          ActiveCallScreen(phoneNumber: number),
                     ),
                   );
                 },
