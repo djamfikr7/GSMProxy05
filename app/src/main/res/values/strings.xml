@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ProxyGSM Agent</string>
+    <string name="notification_channel_id">proxygsm_service</string>
+    <string name="notification_channel_name">ProxyGSM Service</string>
+    <string name="service_running">ProxyGSM is active</string>
+</resources>
