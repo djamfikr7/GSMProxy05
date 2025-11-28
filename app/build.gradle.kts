@@ -71,6 +71,9 @@ dependencies {
 
     // JSON
     implementation("com.google.code.gson:gson:2.10.1")
+    
+    // Notification Listener
+    implementation("androidx.core:core:1.12.0")
 
     // Testing
     testImplementation("junit:junit:4.13.2")
