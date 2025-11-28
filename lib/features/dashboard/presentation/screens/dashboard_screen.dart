@@ -11,6 +11,7 @@ import '../../../dialer/presentation/screens/dialer_screen.dart';
 import '../../../dialer/presentation/screens/call_management_screen.dart';
 import '../../../dialer/presentation/screens/incoming_call_screen.dart';
 import '../../../messaging/presentation/screens/messaging_screen.dart';
+import '../../../advanced/presentation/screens/advanced_features_screen.dart';
 
 class DashboardScreen extends ConsumerWidget {
   const DashboardScreen({super.key});
@@ -66,6 +67,10 @@ class DashboardScreen extends ConsumerWidget {
                       icon: Icon(Icons.message_rounded),
                       label: Text('Messages'),
                     ),
+                    NavigationRailDestination(
+                      icon: Icon(Icons.settings_suggest_rounded),
+                      label: Text('Advanced'),
+                    ),
                   ],
                 ),
 
@@ -118,6 +123,10 @@ class DashboardScreen extends ConsumerWidget {
                     NavigationDestination(
                       icon: Icon(Icons.message_rounded),
                       label: 'Messages',
+                    ),
+                    NavigationDestination(
+                      icon: Icon(Icons.settings_suggest_rounded),
+                      label: 'Advanced',
                     ),
                   ],
                 )
@@ -179,6 +188,8 @@ class DashboardScreen extends ConsumerWidget {
         return const CallManagementScreen();
       case 4:
         return const MessagingScreen();
+      case 5:
+        return const AdvancedFeaturesScreen();
       default:
         return Center(child: Text('Tab $index - Coming in Phase ${index + 5}'));
     }
