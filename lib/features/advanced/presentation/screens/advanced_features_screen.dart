@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../../../design/tokens.dart';
 import '../../../../components/components.dart';
+import '../../../../core/page_transitions.dart';
 import '../../../sim/presentation/screens/sim_management_screen.dart';
 import '../../../monitoring/presentation/screens/monitoring_screen.dart';
 import '../../../ussd/presentation/screens/ussd_screen.dart';
@@ -23,8 +24,9 @@ class AdvancedFeaturesScreen extends StatelessWidget {
         onTap: (context) {
           Navigator.push(
             context,
-            MaterialPageRoute(
-              builder: (context) => const SimManagementScreen(),
+            SharedAxisPageRoute(
+              page: const SimManagementScreen(),
+              transitionType: SharedAxisTransitionType.scaled,
             ),
           );
         },
@@ -37,7 +39,10 @@ class AdvancedFeaturesScreen extends StatelessWidget {
         onTap: (context) {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const MonitoringScreen()),
+            SharedAxisPageRoute(
+              page: const MonitoringScreen(),
+              transitionType: SharedAxisTransitionType.scaled,
+            ),
           );
         },
       ),
@@ -49,7 +54,10 @@ class AdvancedFeaturesScreen extends StatelessWidget {
         onTap: (context) {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const UssdScreen()),
+            SharedAxisPageRoute(
+              page: const UssdScreen(),
+              transitionType: SharedAxisTransitionType.scaled,
+            ),
           );
         },
       ),
@@ -62,8 +70,9 @@ class AdvancedFeaturesScreen extends StatelessWidget {
         onTap: (context) {
           Navigator.push(
             context,
-            MaterialPageRoute(
-              builder: (context) => const CallRecordingScreen(),
+            SharedAxisPageRoute(
+              page: const CallRecordingScreen(),
+              transitionType: SharedAxisTransitionType.scaled,
             ),
           );
         },

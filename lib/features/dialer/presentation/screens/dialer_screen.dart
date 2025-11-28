@@ -6,6 +6,8 @@ import '../widgets/dialer_keypad.dart';
 import 'active_call_screen.dart';
 import '../../data/dialer_providers.dart';
 import '../../../../design/tokens.dart';
+import '../../../../core/page_transitions.dart';
+import '../../../../core/haptic_manager.dart';
 
 /// Premium dialer screen with smooth animations
 class DialerScreen extends ConsumerWidget {
@@ -78,11 +80,9 @@ class DialerScreen extends ConsumerWidget {
               child: _CallButton(
                 enabled: number.isNotEmpty,
                 onTap: () {
+                  HapticManager.callConnected();
                   Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          ActiveCallScreen(phoneNumber: number),
-                    ),
+                    ScalePageRoute(page: ActiveCallScreen(phoneNumber: number)),
                   );
                 },
               ),

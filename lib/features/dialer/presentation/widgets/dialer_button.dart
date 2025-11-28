@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../design/tokens.dart';
+import '../../../../core/haptic_manager.dart';
 
 /// Premium dialer keypad button with tactile feedback
 class DialerButton extends StatefulWidget {
@@ -69,8 +70,16 @@ class _DialerButtonState extends State<DialerButton>
       onTapDown: _handleTapDown,
       onTapUp: _handleTapUp,
       onTapCancel: _handleTapCancel,
-      onTap: widget.onTap,
-      onLongPress: widget.onLongPress,
+      onTap: () {
+        HapticManager.light();
+        widget.onTap();
+      },
+      onLongPress: () {
+        if (widget.onLongPress != null) {
+          HapticManager.medium();
+          widget.onLongPress!();
+        }
+      },
       child: AnimatedBuilder(
         animation: _scaleAnimation,
         builder: (context, child) {
