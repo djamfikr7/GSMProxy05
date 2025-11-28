@@ -7,6 +7,7 @@ import '../../../sim/presentation/screens/sim_management_screen.dart';
 import '../../../monitoring/presentation/screens/monitoring_screen.dart';
 import '../../../ussd/presentation/screens/ussd_screen.dart';
 import '../../../call_recording/presentation/screens/call_recording_screen.dart';
+import '../../../files/presentation/screens/remote_files_screen.dart';
 
 class AdvancedFeaturesScreen extends StatelessWidget {
   const AdvancedFeaturesScreen({super.key});
@@ -56,6 +57,21 @@ class AdvancedFeaturesScreen extends StatelessWidget {
             context,
             SharedAxisPageRoute(
               page: const UssdScreen(),
+              transitionType: SharedAxisTransitionType.scaled,
+            ),
+          );
+        },
+      ),
+      _FeatureItem(
+        title: 'Remote Files',
+        description: 'Browse and manage device files',
+        icon: Icons.folder_open_rounded,
+        color: Colors.purple,
+        onTap: (context) {
+          Navigator.push(
+            context,
+            SharedAxisPageRoute(
+              page: const RemoteFilesScreen(),
               transitionType: SharedAxisTransitionType.scaled,
             ),
           );

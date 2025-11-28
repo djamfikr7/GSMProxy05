@@ -101,7 +101,7 @@ class RotationPageRoute<T> extends PageRouteBuilder<T> {
       );
 }
 
-/// Material-style shared axis transition
+/// Material-style shared axis transition (Simplified)
 class SharedAxisPageRoute<T> extends PageRouteBuilder<T> {
   final Widget page;
   final SharedAxisTransitionType transitionType;
@@ -140,57 +140,68 @@ class _SharedAxisTransition extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DualTransitionBuilder(
-      animation: animation,
-      forwardBuilder: (context, animation, child) {
+    // Incoming transition (when this page appears)
+    final enterAnimation = CurvedAnimation(
+      parent: animation,
+      curve: Curves.easeInOutCubic,
+    );
+
+    // Outgoing transition (when a new page covers this one)
+    final exitAnimation = CurvedAnimation(
+      parent: secondaryAnimation,
+      curve: Curves.easeInOutCubic,
+    );
+
+    return AnimatedBuilder(
+      animation: Listenable.merge([enterAnimation, exitAnimation]),
+      builder: (context, child) {
+        // Calculate opacity and position based on both animations
+        double opacity = enterAnimation.value;
+        Offset position = Offset.zero;
+        double scale = 1.0;
+
+        // If we are being covered by another page, fade out
+        if (secondaryAnimation.value > 0) {
+          opacity = 1.0 - exitAnimation.value;
+        }
+
         switch (transitionType) {
           case SharedAxisTransitionType.horizontal:
-            return SlideTransition(
-              position: Tween<Offset>(
-                begin: const Offset(0.3, 0.0),
-                end: Offset.zero,
-              ).animate(animation),
-              child: FadeTransition(opacity: animation, child: child),
-            );
+            if (secondaryAnimation.value > 0) {
+              // Exiting: Slide to left
+              position = Offset(-30.0 * exitAnimation.value, 0.0);
+            } else {
+              // Entering: Slide from right
+              position = Offset(30.0 * (1.0 - enterAnimation.value), 0.0);
+            }
+            break;
           case SharedAxisTransitionType.vertical:
-            return SlideTransition(
-              position: Tween<Offset>(
-                begin: const Offset(0.0, 0.3),
-                end: Offset.zero,
-              ).animate(animation),
-              child: FadeTransition(opacity: animation, child: child),
-            );
+            if (secondaryAnimation.value > 0) {
+              // Exiting: Slide up
+              position = Offset(0.0, -30.0 * exitAnimation.value);
+            } else {
+              // Entering: Slide from down
+              position = Offset(0.0, 30.0 * (1.0 - enterAnimation.value));
+            }
+            break;
           case SharedAxisTransitionType.scaled:
-            return ScaleTransition(
-              scale: Tween<double>(begin: 0.8, end: 1.0).animate(animation),
-              child: FadeTransition(opacity: animation, child: child),
-            );
+            if (secondaryAnimation.value > 0) {
+              // Exiting: Scale up slightly
+              scale = 1.0 + (0.1 * exitAnimation.value);
+            } else {
+              // Entering: Scale from 0.8
+              scale = 0.8 + (0.2 * enterAnimation.value);
+            }
+            break;
         }
-      },
-      reverseBuilder: (context, animation, child) {
-        switch (transitionType) {
-          case SharedAxisTransitionType.horizontal:
-            return SlideTransition(
-              position: Tween<Offset>(
-                begin: const Offset(-0.3, 0.0),
-                end: Offset.zero,
-              ).animate(animation),
-              child: FadeTransition(opacity: animation, child: child),
-            );
-          case SharedAxisTransitionType.vertical:
-            return SlideTransition(
-              position: Tween<Offset>(
-                begin: const Offset(0.0, -0.3),
-                end: Offset.zero,
-              ).animate(animation),
-              child: FadeTransition(opacity: animation, child: child),
-            );
-          case SharedAxisTransitionType.scaled:
-            return ScaleTransition(
-              scale: Tween<double>(begin: 1.2, end: 1.0).animate(animation),
-              child: FadeTransition(opacity: animation, child: child),
-            );
-        }
+
+        return Transform.translate(
+          offset: position,
+          child: Transform.scale(
+            scale: scale,
+            child: Opacity(opacity: opacity.clamp(0.0, 1.0), child: child),
+          ),
+        );
       },
       child: child,
     );
