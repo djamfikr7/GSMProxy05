@@ -1,0 +1,83 @@
+{
+  "project_info": {
+    "project_number": "667759550505",
+    "firebase_url": "https://uberclone-d1850-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "uberclone-d1850",
+    "storage_bucket": "uberclone-d1850.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:667759550505:android:87c535bdd0041f20437c38",
+        "android_client_info": {
+          "package_name": "com.example.uber_clone_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "667759550505-pj98opqcsk3k8dt0ghf2gmp1ilstn1s2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9tSfSLlXwmkYopJOwS_9XSq7ssZ45F40"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "667759550505-pj98opqcsk3k8dt0ghf2gmp1ilstn1s2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "667759550505-7jcikk523e630ddusneculg3kff3cudm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.uberCloneFlutter"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:667759550505:android:538b1dc1c0290013437c38",
+        "android_client_info": {
+          "package_name": "com.proxygsm.agent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "667759550505-pj98opqcsk3k8dt0ghf2gmp1ilstn1s2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9tSfSLlXwmkYopJOwS_9XSq7ssZ45F40"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "667759550505-pj98opqcsk3k8dt0ghf2gmp1ilstn1s2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "667759550505-7jcikk523e630ddusneculg3kff3cudm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.uberCloneFlutter"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
